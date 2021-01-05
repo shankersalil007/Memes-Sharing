@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toBottomOf="@id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/black"/>
 
 
 
@@ -26,9 +27,11 @@
         android:onClick="shareMeme"
         android:padding="32dp"
         android:text="@string/share"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guideline" />
+        app:layout_constraintRight_toLeftOf="@id/guideline"
+        android:background="@color/sharedButtonColor"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/nextButton"
@@ -37,9 +40,11 @@
         android:onClick="nextMeme"
         android:padding="32dp"
         android:text="@string/next"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/guideline"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/nextButtonColor"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

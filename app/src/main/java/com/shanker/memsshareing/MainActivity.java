@@ -40,7 +40,6 @@ import javax.xml.transform.ErrorListener;
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
-    RequestQueue queue;
     ProgressBar progressBar;
     String currentImgUrl=null;
 
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
-        queue = Volley.newRequestQueue(this);
         loadImage();
     }
 
@@ -89,12 +87,8 @@ public class MainActivity extends AppCompatActivity {
                        Log.i("msg",error.getMessage());
                     }
                 });
-        queue.add(jsonObjectRequest);
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
-
-
-
-
 
     public void shareMeme(View view) {
         Intent intent = new Intent(Intent.ACTION_SEND);
