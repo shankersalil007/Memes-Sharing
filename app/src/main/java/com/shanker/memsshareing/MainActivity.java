@@ -3,6 +3,7 @@ package com.shanker.memsshareing;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
     RequestQueue queue;
     ProgressBar progressBar;
+    String currentImgUrl=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String imageUrl = null;
-                            imageUrl = response.getString("url");
-                            Glide.with(MainActivity.this).load(imageUrl).listener(new RequestListener<Drawable>() {
+                            currentImgUrl = response.getString("url");
+                            Glide.with(MainActivity.this).load(currentImgUrl).listener(new RequestListener<Drawable>() {
                                 @Override
                                 public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                                     return false;
@@ -96,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void shareMeme(View view) {
-
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/url");
+        intent.putExtra(Intent.EXTRA_TEXT, "Check out this cool meme! "+currentImgUrl);
+        startActivity(Intent.createChooser(intent, "Share link using"));
     }
 
     public void nextMeme(View view) {
